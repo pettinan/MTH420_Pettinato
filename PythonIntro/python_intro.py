@@ -1,6 +1,6 @@
 # python_intro.py
 """Python Essentials: Introduction to Python.
-<Noah>
+<Noah Pettinato>
 <MTH 420>
 <4/3/2025>
 """

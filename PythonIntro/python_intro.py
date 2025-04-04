@@ -16,7 +16,7 @@ def sphere_volume(r):
     Use 3.14159 for pi in your computation.
     """
     return (4/3) * 3.14159 * r**3
-    raise NotImplementedError("Problem 2 Incomplete")
+    #raise NotImplementedError("Problem 2 Incomplete")
 
 
 # Problem 3
@@ -43,7 +43,7 @@ def first_half(my_string):
     mid_index = len(my_string) // 2
     return my_string[:mid_index]
 
-    raise NotImplementedError("Problem 4 Incomplete")
+    #raise NotImplementedError("Problem 4 Incomplete")
 
 def backward(my_string):
     """ Return the reverse of the string 'my_string'.
@@ -55,7 +55,7 @@ def backward(my_string):
         'nohtypi'
     """
     return my_string[::-1]
-    raise NotImplementedError("Problem 4 Incomplete")
+    #raise NotImplementedError("Problem 4 Incomplete")
 
 
 # Problem 5
@@ -81,11 +81,11 @@ def list_ops():
     my_list.sort(reverse = True)
     eagle_index = my_list.index("eagle")
     my_list[eagle_index] = "hawk"
-    my_list.append("hunter")
+    my_list[-1] += ("hunter")
     return my_list
     
     
-    raise NotImplementedError("Problem 5 Incomplete")
+    #raise NotImplementedError("Problem 5 Incomplete")
 
 
 # Problem 6
@@ -103,7 +103,7 @@ def pig_latin(word):
         return word + "hay"
     else:
         return word[1:] + word[0] + "ay"
-    raise NotImplementedError("Problem 6 Incomplete")
+    #raise NotImplementedError("Problem 6 Incomplete")
 
 
 # Problem 7
@@ -119,7 +119,7 @@ def palindrome():
                 if product > max_palindrome:
                     max_palindrome = product
     return max_palindrome
-    raise NotImplementedError("Problem 7 Incomplete")
+    #raise NotImplementedError("Problem 7 Incomplete")
 
 # Problem 8
 def alt_harmonic(n):
@@ -127,7 +127,7 @@ def alt_harmonic(n):
     harmonic series, which approximates ln(2).
     """
     return sum([(-1)**(k+1) / k for k in range(1, n+1)])
-    raise NotImplementedError("Problem 8 Incomplete")
+    #raise NotImplementedError("Problem 8 Incomplete")
     
     
 if __name__=="__main__":

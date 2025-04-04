@@ -81,7 +81,7 @@ def list_ops():
     my_list.sort(reverse = True)
     eagle_index = my_list.index("eagle")
     my_list[eagle_index] = "hawk"
-    my_list[-1] += ("hunter")
+    my_list[-1] += "hunter"
     return my_list
     
     

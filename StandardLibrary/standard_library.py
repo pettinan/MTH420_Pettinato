@@ -1,8 +1,8 @@
 # standard_library.py
 """Python Essentials: The Standard Library.
-<Name>
-<Class>
-<Date>
+Noah Pettinato
+MTH 420
+4/10/2025
 """
 
 from math import sqrt
@@ -13,7 +13,7 @@ def prob1(L):
     """Return the minimum, maximum, and average of the entries of L
     (in that order, separated by a comma).
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    return min(L), max(L), sum(L) / len(L)
 
 
 # Problem 2
@@ -56,3 +56,12 @@ def power_set(A):
 def shut_the_box(player, timelimit):
     """Play a single game of shut the box."""
     raise NotImplementedError("Problem 5 Incomplete")
+ 
+    
+if __name__=="__main__":
+
+# Test Problem 2 (sphere volume)
+    print("\nTesting Problem 2: Sphere Volume")
+    r = 3
+    volume = sphere_volume(r)
+    print("Volume of sphere with radius", r, ":", volume)

@@ -1,8 +1,8 @@
 # python_intro.py
 """Python Essentials: Introduction to Python.
-<Noah Pettinato>
-<MTH 420>
-<4/3/2025>
+Noah Pettinato
+MTH 420
+4/3/2025
 """
 
 
@@ -133,7 +133,7 @@ def alt_harmonic(n):
 if __name__=="__main__":
     print("Hello, world!")
 
-#T Test Problem 2 (sphere volume)
+# Test Problem 2 (sphere volume)
     print("\nTesting Problem 2: Sphere Volume")
     r = 3
     volume = sphere_volume(r)

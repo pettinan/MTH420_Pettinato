@@ -7,6 +7,8 @@ MTH 420
 
 import calculator as calc
 from itertools import combinations 
+from math import sqrt
+
 
 
 # Problem 1

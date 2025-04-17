@@ -101,3 +101,30 @@ def prob7():
     diag_l = grid[:-3, 3:] * grid[1:-2, 2:-1] * grid[2:-1, 1:-2] * grid[3:, :-3]
     return np.max([horiz.max(), vert.max(), diag_r.max(), diag_l.max()]) 
 
+
+if __name__ == "__main__":
+    print("Testing Problem 1: Matrix Product AB")
+    print(prob1())
+
+    print("\nTesting Problem 2: Expression -A^3 + 9A^2 - 15A")
+    print(prob2())
+
+    print("\nTesting Problem 3: Matrix Product ABA with Modified B")
+    print(prob3())
+
+    print("\nTesting Problem 4: Zeroing Negative Entries")
+    test_array = np.array([-3, -1, 3])
+    print("Original:", test_array)
+    print("Modified:", prob4(test_array))
+
+    print("\nTesting Problem 5: Block Matrix Construction")
+    _, _, _, _, block_matrix = prob5()
+    print(block_matrix)
+
+    print("\nTesting Problem 6: Row Normalization")
+    test_matrix = np.array([[1, 1, 0], [0, 1, 0], [1, 1, 1]])
+    print("Original:\n", test_matrix)
+    print("Normalized:\n", prob6(test_matrix))
+
+    print("\nTesting Problem 7: Max Product of 4 Adjacent Numbers in Grid")
+    print("Max Product:", prob7())

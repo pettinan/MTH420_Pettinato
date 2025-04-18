@@ -134,6 +134,7 @@ if __name__=="__main__":
 # Test Problem 3 (isolate function)
     print("\nTesting Problem 3: Isolate Function:")
     isolate(1, 2, 3, 4, 5)
+    isolate('a', 'b', 'c', 'd', 'e')
 
 # Test Problem 4 (first_half)
     print("\nTesting Problem 4: First Half Function")

@@ -20,13 +20,24 @@ def var_of_means(n):
     Returns:
         (float) The variance of the means of each row.
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    samples = np.random.normal(size=(n, n))
+    row_means = np.mean(samples, axis=1)
+    return np.var(row_means)
 
 def prob1():
     """ Create an array of the results of var_of_means() with inputs
     n = 100, 200, ..., 1000. Plot and show the resulting array.
     """
-    raise NotImplementedError("Problem 1 Incomplete")
+    n_values = np.arange(100, 1001, 100)
+    variances = np.array([var_of_means(n) for n in n_values])
+    
+    plt.plot(variances)
+    plt.title("Variance of Row Means vs Matrix Size Index")
+    plt.xlabel("Index (0 = n=100, 1 = n=200, ... , 9 = n=1000)")
+    plt.ylabel("Variance of Row Means")
+    plt.savefig("prob1_plot.png")
+    print("Plot saved to 'prob1_plot.png'")
+
 
 
 # Problem 2
@@ -35,8 +46,24 @@ def prob2():
     [-2pi, 2pi]. Make sure the domain is refined enough to produce a figure
     with good resolution.
     """
-    raise NotImplementedError("Problem 2 Incomplete")
-
+    plt.clf()
+    x = np.linspace(-2 * np.pi, 2* np.pi, 100)
+    y1 = np.sin(x)
+    y2 = np.cos(x)
+    y3 = np.arctan(x)
+    
+    plt.plot(x, y1)
+    plt.plot(x, y2)
+    plt.plot(x, y3)
+    
+    plt.title("sin(x), cos(x), arctan(x) on [-2π, 2π]")
+    plt.xlabel("x")
+    plt.ylabel("Function Values")
+    
+    plt.legend(["sin(x)", "cos(x)", "arctan(x)"])
+    
+    plt.savefig("prob2_plot.png")
+    print("Plot saved to 'prob2_plot.png'")
 
 # Problem 3
 def prob3():
@@ -91,3 +118,12 @@ def prob6():
         4. Include a color scale bar for each subplot.
     """
     raise NotImplementedError("Problem 6 Incomplete")
+
+if __name__=="__main__":
+    print("Hello, world!")
+
+    print("\nTesting Problem 1: Plotting variance of row means")
+    prob1()
+    
+    print("\nTesting Problem 2: Plotting sin(x), cos(x), and arctan(x)")
+    prob2()  

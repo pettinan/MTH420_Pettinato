@@ -1,8 +1,8 @@
 # matplotlib_intro.py
 """Python Essentials: Intro to Matplotlib.
-<Name>
-<Class>
-<Date>
+Noah Pettinato
+MTH 420
+4/24/2025
 """
 
 import numpy as np
@@ -35,9 +35,11 @@ def prob1():
     plt.title("Variance of Row Means vs Matrix Size Index")
     plt.xlabel("Index (0 = n=100, 1 = n=200, ... , 9 = n=1000)")
     plt.ylabel("Variance of Row Means")
-    plt.savefig("prob1_plot.png")
-    print("Plot saved to 'prob1_plot.png'")
+    
+    #plt.savefig("prob1_plot.png")
+    #print("Plot saved to 'prob1_plot.png'")
 
+    plt.show()
 
 
 # Problem 2
@@ -62,9 +64,11 @@ def prob2():
     
     plt.legend(["sin(x)", "cos(x)", "arctan(x)"])
     
-    plt.savefig("prob2_plot.png")
-    print("Plot saved to 'prob2_plot.png'")
+    #plt.savefig("prob2_plot.png")
+    #print("Plot saved to 'prob2_plot.png'")
 
+    plt.show()
+    
 # Problem 3
 def prob3():
     """ Plot the curve f(x) = 1/(x-1) on the domain [-2,6].
@@ -73,8 +77,25 @@ def prob3():
         3. Set the range of the x-axis to [-2,6] and the range of the
            y-axis to [-6,6].
     """
-    raise NotImplementedError("Problem 3 Incomplete")
+    plt.clf()
+    x1 = np.linspace(-2, 0.99, 500)
+    x2 = np.linspace(1.01, 6, 500)
+    
+    y1 = 1 / (x1 - 1)
+    y2 = 1 / (x2 - 1)
+    
+    plt.plot(x1, y1, 'm--', linewidth=4)
+    plt.plot(x2, y2, 'm--', linewidth=4)
+    
+    plt.xlim(-2, 6)
+    plt.ylim(-6, 6)
+    
+    
+    #plt.savefig("prob3_plot.png")
+    #print("Plot saved to 'prob3_plot.png'")
 
+    plt.show()
+    
 
 # Problem 4
 def prob4():
@@ -90,7 +111,33 @@ def prob4():
              2sin(x): blue dashed line.
             2sin(2x): magenta dotted line.
     """
-    raise NotImplementedError("Problem 4 Incomplete")
+    plt.clf()
+    x = np.linspace(0, 2 * np.pi, 500)
+    fig, axes = plt.subplots(2, 2)
+    fig.suptitle("Variations of Sine Functions", fontsize=16)
+    
+    axes[0, 0].plot(x, np.sin(x), 'g-') 
+    axes[0, 0].set_title("sin(x)")
+    axes[0, 0].axis([0, 2 * np.pi, -2, 2])
+
+    axes[0, 1].plot(x, np.sin(2 * x), 'r--') 
+    axes[0, 1].set_title("sin(2x)")
+    axes[0, 1].axis([0, 2 * np.pi, -2, 2])
+
+    axes[1, 0].plot(x, 2 * np.sin(x), 'b--')  
+    axes[1, 0].set_title("2sin(x)")
+    axes[1, 0].axis([0, 2 * np.pi, -2, 2])
+
+    axes[1, 1].plot(x, 2 * np.sin(2 * x), 'm:')  
+    axes[1, 1].set_title("2sin(2x)")
+    axes[1, 1].axis([0, 2 * np.pi, -2, 2])
+
+    #plt.subplots_adjust(hspace=0.5)
+    #plt.savefig("prob4_plot.png")
+    #print("Plot saved to 'prob4_plot.png'")
+
+    plt.show()
+
 
 
 # Problem 5
@@ -103,9 +150,30 @@ def prob5():
         2. A histogram of the hours of the day, with one bin per hour.
             Label and set the limits of the x-axis.
     """
-    raise NotImplementedError("Problem 5 Incomplete")
+    plt.clf()
+    data = np.load("FARS.npy")  
 
+    hours = data[:, 0]
+    longitudes = data[:, 1]
+    latitudes = data[:, 2]
 
+    ax1 = plt.subplot(121)
+    plt.plot(longitudes, latitudes, 'k,')  
+    plt.xlabel("Longitude")
+    plt.ylabel("Latitude")
+    plt.axis("equal")  
+
+    ax2 = plt.subplot(122)
+    plt.hist(hours, bins=np.arange(25))  
+    plt.xlabel("Hour of Day")
+    plt.xlim(0, 24)
+    
+    #plt.subplots_adjust(wspace=0.3)
+    #plt.savefig("prob5_plot.png")
+    #print("Plot saved to 'prob5_plot.png'")
+
+    plt.show()
+        
 # Problem 6
 def prob6():
     """ Plot the function g(x,y) = sin(x)sin(y)/xy on the domain
@@ -117,8 +185,34 @@ def prob6():
         3. Choose a non-default color scheme.
         4. Include a color scale bar for each subplot.
     """
-    raise NotImplementedError("Problem 6 Incomplete")
+    plt.clf()
+    x = np.linspace(-2 * np.pi, 2 * np.pi, 400)
+    y = x.copy()
+    X, Y = np.meshgrid(x, y)
 
+    numerator = np.sin(X) * np.sin(Y)
+    denominator = X * Y
+    G = np.where(denominator != 0, numerator / denominator, 1.0)
+
+    plt.subplot(121)
+    plt.pcolormesh(X, Y, G, cmap="magma", shading="auto")
+    plt.colorbar()
+    plt.xlim(-2*np.pi, 2*np.pi)
+    plt.ylim(-2*np.pi, 2*np.pi)
+
+    plt.subplot(122)
+    plt.contour(X, Y, G, levels=20, cmap="coolwarm") 
+    plt.colorbar()
+    plt.xlim(-2*np.pi, 2*np.pi)
+    plt.ylim(-2*np.pi, 2*np.pi)
+    
+    #plt.subplots_adjust(wspace=0.3)
+    #plt.savefig("prob6_plot.png")
+    #print("Plot saved to 'prob6_plot.png'")
+
+    plt.show()
+
+    
 if __name__=="__main__":
     print("Hello, world!")
 
@@ -127,3 +221,16 @@ if __name__=="__main__":
     
     print("\nTesting Problem 2: Plotting sin(x), cos(x), and arctan(x)")
     prob2()  
+    
+    print("\nTesting Problem 3: Plotting f(x) = 1 / (x - 1)")
+    prob3()
+    
+    print("\nTesting Problem 4: Plotting sine function variations in subplots")
+    prob4()
+    
+    print("\nTesting Problem 5: Visualizing FARS data with scatter plot and histogram")
+    prob5()
+
+    print("\nTesting Problem 6: Heat map and contour plot of g(x, y) = sin(x)sin(y)/xy")
+    prob6()
+

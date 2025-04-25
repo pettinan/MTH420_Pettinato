@@ -1,0 +1,22 @@
+04/25/25 21:47
+
+Problem 1 (15 points):
+Score += 15
+
+Problem 2 (15 points):
+Score += 15
+
+Problem 3 (10 points):
+Score += 10
+
+Problem 4 (10 points):
+Score += 10
+
+Total score: 50/50 = 100.0%
+
+Excellent!
+
+Linter Notes: None
+
+-------------------------------------------------------------------------------
+

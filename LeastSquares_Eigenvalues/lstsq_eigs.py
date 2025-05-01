@@ -65,9 +65,9 @@ def polynomial_fit():
     x_smooth = np.linspace(x.min(), x.max(), 500)
     plt.figure(figsize=(10, 8))
     for i, deg in enumerate(degrees):
-        A = np.vander(x, deg + 1)  # Vandermonde matrix
-        coeffs = la.lstsq(A, y)[0]  # Least squares coefficients
-        y_fit = np.polyval(coeffs, x_smooth)  # Evaluate polynomial at smooth points
+        A = np.vander(x, deg + 1)  
+        coeffs = la.lstsq(A, y)[0]  
+        y_fit = np.polyval(coeffs, x_smooth)  
         plt.subplot(2, 2, i + 1)
         plt.plot(x, y, 'o', label="Data")
         plt.plot(x_smooth, y_fit, label=f"Degree {deg} Fit")

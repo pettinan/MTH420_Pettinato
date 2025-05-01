@@ -3,12 +3,22 @@
 
 import lstsq_eigs
 import numpy as np
+# Problem 6
+from scipy import linalg as la
+
 
 def test_qr_algorithm():
     """
     Write at least one unit test for problem 6, the qr algorithm function.
     """
-    raise NotImplementedError("No code written for problem 6 unit test!!")
+    A = np.array([[2, 1], [1, 2]])
+    eigs_qr = lstsq_eigs.qr_algorithm(A)
+    eigs_scipy = la.eigvals(A)
+    eigs_qr_sorted = np.sort_complex(eigs_qr)
+    eigs_scipy_sorted = np.sort_complex(eigs_scipy)
+    assert np.allclose(eigs_qr_sorted, eigs_scipy_sorted, atol=1e-8), \
+        f"Mismatch: Your eigenvalues = {eigs_qr_sorted}, SciPy = {eigs_scipy_sorted}"
+    print("test_qr_algorithm passed.")
 
 def test_power_method():
     #Sets up test cases
@@ -29,3 +39,10 @@ def test_power_method():
     assert np.linalg.norm(A @ Avec - Aval * Avec) < 1e-3, "Incorrect vector"
     assert np.linalg.norm(B @ Bvec - Bval * Bvec) < 1e-3, "Incorrect vector"
     assert np.linalg.norm(C @ Cvec - Cval * Cvec) < 1e-3, "Incorrect vector"
+    
+    print("test_power_method passed.")
+
+    
+if __name__ == "__main__":
+    test_power_method()
+    test_qr_algorithm()

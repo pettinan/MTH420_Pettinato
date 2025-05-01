@@ -2,7 +2,7 @@
 """Volume 1: Least Squares and Computing Eigenvalues.
 Noah Pettinato
 MTH 420
-5/2/2025
+5/1/2025
 """
 
 import numpy as np

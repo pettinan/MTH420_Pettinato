@@ -35,10 +35,6 @@ def prob1():
     plt.title("Variance of Row Means vs Matrix Size Index")
     plt.xlabel("Index (0 = n=100, 1 = n=200, ... , 9 = n=1000)")
     plt.ylabel("Variance of Row Means")
-    
-    #plt.savefig("prob1_plot.png")
-    #print("Plot saved to 'prob1_plot.png'")
-
     plt.show()
 
 
@@ -47,8 +43,7 @@ def prob2():
     """ Plot the functions sin(x), cos(x), and arctan(x) on the domain
     [-2pi, 2pi]. Make sure the domain is refined enough to produce a figure
     with good resolution.
-    """
-    plt.clf()
+    """   
     x = np.linspace(-2 * np.pi, 2* np.pi, 100)
     y1 = np.sin(x)
     y2 = np.cos(x)
@@ -63,10 +58,6 @@ def prob2():
     plt.ylabel("Function Values")
     
     plt.legend(["sin(x)", "cos(x)", "arctan(x)"])
-    
-    #plt.savefig("prob2_plot.png")
-    #print("Plot saved to 'prob2_plot.png'")
-
     plt.show()
     
 # Problem 3
@@ -77,7 +68,6 @@ def prob3():
         3. Set the range of the x-axis to [-2,6] and the range of the
            y-axis to [-6,6].
     """
-    plt.clf()
     x1 = np.linspace(-2, 0.99, 500)
     x2 = np.linspace(1.01, 6, 500)
     
@@ -89,11 +79,6 @@ def prob3():
     
     plt.xlim(-2, 6)
     plt.ylim(-6, 6)
-    
-    
-    #plt.savefig("prob3_plot.png")
-    #print("Plot saved to 'prob3_plot.png'")
-
     plt.show()
     
 
@@ -111,7 +96,6 @@ def prob4():
              2sin(x): blue dashed line.
             2sin(2x): magenta dotted line.
     """
-    plt.clf()
     x = np.linspace(0, 2 * np.pi, 500)
     fig, axes = plt.subplots(2, 2)
     fig.suptitle("Variations of Sine Functions", fontsize=16)
@@ -131,11 +115,6 @@ def prob4():
     axes[1, 1].plot(x, 2 * np.sin(2 * x), 'm:')  
     axes[1, 1].set_title("2sin(2x)")
     axes[1, 1].axis([0, 2 * np.pi, -2, 2])
-
-    #plt.subplots_adjust(hspace=0.5)
-    #plt.savefig("prob4_plot.png")
-    #print("Plot saved to 'prob4_plot.png'")
-
     plt.show()
 
 
@@ -150,7 +129,6 @@ def prob5():
         2. A histogram of the hours of the day, with one bin per hour.
             Label and set the limits of the x-axis.
     """
-    plt.clf()
     data = np.load("FARS.npy")  
 
     hours = data[:, 0]
@@ -167,11 +145,6 @@ def prob5():
     plt.hist(hours, bins=np.arange(25))  
     plt.xlabel("Hour of Day")
     plt.xlim(0, 24)
-    
-    #plt.subplots_adjust(wspace=0.3)
-    #plt.savefig("prob5_plot.png")
-    #print("Plot saved to 'prob5_plot.png'")
-
     plt.show()
         
 # Problem 6
@@ -185,14 +158,13 @@ def prob6():
         3. Choose a non-default color scheme.
         4. Include a color scale bar for each subplot.
     """
-    plt.clf()
     x = np.linspace(-2 * np.pi, 2 * np.pi, 400)
+    # Remove 0 to avoid division by zero
+    x = x[x != 0]
     y = x.copy()
+    
     X, Y = np.meshgrid(x, y)
-
-    numerator = np.sin(X) * np.sin(Y)
-    denominator = X * Y
-    G = np.where(denominator != 0, numerator / denominator, 1.0)
+    G = (np.sin(X) * np.sin(Y)) / (X * Y)
 
     plt.subplot(121)
     plt.pcolormesh(X, Y, G, cmap="magma", shading="auto")
@@ -205,11 +177,6 @@ def prob6():
     plt.colorbar()
     plt.xlim(-2*np.pi, 2*np.pi)
     plt.ylim(-2*np.pi, 2*np.pi)
-    
-    #plt.subplots_adjust(wspace=0.3)
-    #plt.savefig("prob6_plot.png")
-    #print("Plot saved to 'prob6_plot.png'")
-
     plt.show()
 
     

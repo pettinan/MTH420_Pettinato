@@ -71,7 +71,7 @@ def prob5():
     mid_row = np.hstack((A, Z2x2, Z2x3))
     bot_row = np.hstack((B, Z3x2, C))
     block_matrix = np.vstack((top_row, mid_row, bot_row))
-    return A, B, C, A.T, block_matrix
+    return block_matrix
     
 
 
@@ -118,7 +118,7 @@ if __name__ == "__main__":
     print("Modified:", prob4(test_array))
 
     print("\nTesting Problem 5: Block Matrix Construction")
-    _, _, _, _, block_matrix = prob5()
+    block_matrix = prob5()
     print(block_matrix)
 
     print("\nTesting Problem 6: Row Normalization")
@@ -128,3 +128,8 @@ if __name__ == "__main__":
 
     print("\nTesting Problem 7: Max Product of 4 Adjacent Numbers in Grid")
     print("Max Product:", prob7())
+    
+    
+    bm = prob5()
+    print("Shape:", bm.shape)
+    print(bm)

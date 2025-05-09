@@ -148,27 +148,5 @@ def qr_algorithm(A, N=50, tol=1e-12):
     Returns:
         ((n,) ndarray): The eigenvalues of A.
     """
-    S = la.hessenberg(A)
-    for _ in range(N):
-        Q, R = la.qr(S)
-        S = R @ Q
-    eigs = []
-    i = 0
-    n = S.shape[0]
-    while i < n:
-        if i == n - 1 or abs(S[i+1, i]) < tol:
-            eigs.append(S[i, i])
-            i += 1
-        else:
-            a, b = S[i, i], S[i, i+1]
-            c, d = S[i+1, i], S[i+1, i+1]
-            trace = a + d
-            det = a * d - b * c
-            disc = sqrt(trace**2 - 4 * det)
-            eig1 = (trace + disc) / 2
-            eig2 = (trace - disc) / 2
-            eigs.extend([eig1, eig2])
-            i += 2
-
-    return np.array(eigs)
+    raise NotImplementedError("Problem 6 Incomplete")
 

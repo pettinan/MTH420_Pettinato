@@ -1,0 +1,19 @@
+05/23/25 20:23
+
+Problem 1 (20 points):
+Score += 20
+
+Problem 2 (20 points):
+Score += 20
+
+Problem 3 (10 points):
+Score += 10
+
+Total score: 50/50 = 100.0%
+
+Excellent!
+
+Linter Notes: None
+
+-------------------------------------------------------------------------------
+

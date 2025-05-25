@@ -8,8 +8,16 @@ def test_prob5():
     """
     Write at least one unit test for problem 5.
     """
-    raise NotImplementedError("No code written for problem 5 unit test!!")
-
+    A = np.array([[1, 2, 1, 1],
+                  [0, 3, -2, -1]])
+    b = np.array([7, 4])
+    x_opt, obj = cvxpy_intro.prob5(A, b)
+    x_expected = np.array([0.0, 1.0, 0.0, 0.0])
+    obj_expected = np.sqrt(26)  # ≈ 5.099019513
+    assert np.allclose(x_opt, x_expected, atol=1e-3), \
+        f"Wrong minimizer: got {x_opt}, expected {x_expected}"
+    assert abs(obj - obj_expected) <= 1e-3, \
+        f"Wrong objective: got {obj}, expected {obj_expected}"
 def test_l1Min():
     # Sets up the matrix and vector
     A = np.array([[1, 2, 1, 1],

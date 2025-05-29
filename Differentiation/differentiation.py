@@ -1,8 +1,8 @@
 # differentiation.py
 """Volume 1: Differentiation.
-<Name>
-<Class>
-<Date>
+Noah Pettinato
+MTH 420
+5/28/2025
 """
 
 import time

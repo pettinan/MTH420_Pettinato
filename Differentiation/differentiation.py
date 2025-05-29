@@ -17,33 +17,37 @@ from jax import grad
 # Problem 1
 def prob1():
     """Return the derivative of (sin(x) + 1)^sin(cos(x)) using SymPy."""
-    raise NotImplementedError("Problem 1 Incomplete")
-
+    x = sy.symbols('x')
+    f = (sy.sin(x) + 1)**sy.sin(sy.cos(x))
+    df = sy.diff(f, x)
+    fprime = sy.lambdify(x, df, modules=['numpy'])
+    return fprime
 
 # Problem 2
 def fdq1(f, x, h=1e-5):
     """Calculate the first order forward difference quotient of f at x."""
-    raise NotImplementedError("Problem 2 Incomplete")
+    return (f(x + h) - f(x)) / h
 
+    
 def fdq2(f, x, h=1e-5):
     """Calculate the second order forward difference quotient of f at x."""
-    raise NotImplementedError("Problem 2 Incomplete")
+    return (-f(x + 2*h) + 4*f(x + h) - 3*f(x)) / (2*h)
 
 def bdq1(f, x, h=1e-5):
     """Calculate the first order backward difference quotient of f at x."""
-    raise NotImplementedError("Problem 2 Incomplete")
+    return (f(x) - f(x - h)) / h
 
 def bdq2(f, x, h=1e-5):
     """Calculate the second order backward difference quotient of f at x."""
-    raise NotImplementedError("Problem 2 Incomplete")
+    return (3*f(x) - 4*f(x - h) + f(x - 2*h)) / (2*h)
 
 def cdq2(f, x, h=1e-5):
     """Calculate the second order centered difference quotient of f at x."""
-    raise NotImplementedError("Problem 2 Incomplete")
+    return (f(x + h) - f(x - h)) / (2*h)
 
 def cdq4(f, x, h=1e-5):
     """Calculate the fourth order centered difference quotient of f at x."""
-    raise NotImplementedError("Problem 2 Incomplete")
+    return (-f(x + 2*h) + 8*f(x + h) - 8*f(x - h) + f(x - 2*h)) / (12*h)
 
 
 # Problem 3
@@ -57,8 +61,39 @@ def prob3(x0):
     Parameters:
         x0 (float): The point where the derivative is being approximated.
     """
-    raise NotImplementedError("Problem 3 Incomplete")
-
+    fprime_exact = prob1()
+    exact = fprime_exact(x0)
+    f = lambda x: (np.sin(x) + 1)**np.sin(np.cos(x))
+    hs = np.logspace(-8, 0, 9)
+    errs = {
+        'FDQ1': [],
+        'FDQ2': [],
+        'BDQ1': [],
+        'BDQ2': [],
+        'CDQ2': [],
+        'CDQ4': []
+    }
+    for h in hs:
+        errs['FDQ1'].append(abs(fdq1(f, x0, h) - exact))
+        errs['FDQ2'].append(abs(fdq2(f, x0, h) - exact))
+        errs['BDQ1'].append(abs(bdq1(f, x0, h) - exact))
+        errs['BDQ2'].append(abs(bdq2(f, x0, h) - exact))
+        errs['CDQ2'].append(abs(cdq2(f, x0, h) - exact))
+        errs['CDQ4'].append(abs(cdq4(f, x0, h) - exact))
+    for k in errs:
+        errs[k] = np.array(errs[k])
+    plt.figure()
+    plt.loglog(hs, errs['FDQ1'], marker='o', label='Order 1 forward')
+    plt.loglog(hs, errs['FDQ2'], marker='o', label='Order 2 forward')
+    plt.loglog(hs, errs['BDQ1'], marker='o', label='Order 1 backward')
+    plt.loglog(hs, errs['BDQ2'], marker='o', label='Order 2 backward')
+    plt.loglog(hs, errs['CDQ2'], marker='o', label='Order 2 centered')
+    plt.loglog(hs, errs['CDQ4'], marker='o', label='Order 4 centered')
+    plt.xlabel('h')
+    plt.ylabel('Absolute Error')
+    plt.title(f'Error vs step size at x₀ = {x0}')
+    plt.legend()
+    plt.show()
 
 # Problem 4
 def prob4():
@@ -84,8 +119,29 @@ def prob4():
     difference quotient for t=8,9,...,13. Return the values of the speed at
     each t.
     """
-    raise NotImplementedError("Problem 4 Incomplete")
-
+    data = np.load('plane.npy') 
+    a = 500.0
+    alpha = np.deg2rad(data[:,1])
+    beta  = np.deg2rad(data[:,2])
+    t_alpha = np.tan(alpha)
+    t_beta  = np.tan(beta)
+    denom   = t_beta - t_alpha
+    xs = a * t_beta / denom
+    ys = a * t_beta * t_alpha / denom
+    n = len(xs)   
+    speeds = np.empty(n)
+    for i in range(n):
+        if i == 0:
+            dx = xs[1] - xs[0]
+            dy = ys[1] - ys[0]
+        elif i == n-1:
+            dx = xs[-1] - xs[-2]
+            dy = ys[-1] - ys[-2]
+        else:
+            dx = (xs[i+1] - xs[i-1]) / 2.0
+            dy = (ys[i+1] - ys[i-1]) / 2.0
+        speeds[i] = np.hypot(dx, dy)
+    return speeds
 
 # Problem 5
 def jacobian_cdq2(f, x, h=1e-5):
@@ -145,3 +201,4 @@ def prob7(N=200):
     For SymPy, assume an absolute error of 1e-18.
     """
     raise NotImplementedError("Problem 7 Incomplete")
+

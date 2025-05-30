@@ -26,40 +26,35 @@ def prob1():
 # Problem 2
 def fdq1(f, x, h=1e-5):
     """Calculate the first order forward difference quotient of f at x."""
-    x = np.atleast_1d(x)
-    result = (f(x + h) - f(x)) / h
-    return result if result.size > 1 else result[0]
+    x = np.atleast_1d(x).astype(float)
+    return (f(x + h) - f(x)) / h
     
 def fdq2(f, x, h=1e-5):
     """Calculate the second order forward difference quotient of f at x."""
-    x = np.atleast_1d(x)
-    result = (-f(x + 2*h) + 4*f(x + h) - 3*f(x)) / (2*h)
-    return result if result.size > 1 else result[0]
+    x = np.atleast_1d(x).astype(float)
+    return (-f(x + 2*h) + 4*f(x + h) - 3*f(x)) / (2*h)
+
 
 def bdq1(f, x, h=1e-5):
     """Calculate the first order backward difference quotient of f at x."""
-    x = np.atleast_1d(x)
-    result = (f(x) - f(x - h)) / h
-    return result if result.size > 1 else result[0]
+    x = np.atleast_1d(x).astype(float)
+    return (f(x) - f(x - h)) / h
 
 def bdq2(f, x, h=1e-5):
     """Calculate the second order backward difference quotient of f at x."""
-    x = np.atleast_1d(x)
-    result = (3*f(x) - 4*f(x - h) + f(x - 2*h)) / (2*h)
-    return result if result.size > 1 else result[0]
+    x = np.atleast_1d(x).astype(float)
+    return (3*f(x) - 4*f(x - h) + f(x - 2*h)) / (2*h)
 
 def cdq2(f, x, h=1e-5):
     """Calculate the second order centered difference quotient of f at x."""
-    x = np.atleast_1d(x)
-    result = (f(x + h) - f(x - h)) / (2*h)
-    return result if result.size > 1 else result[0]
+    x = np.atleast_1d(x).astype(float)
+    return (f(x + h) - f(x - h)) / (2*h)
+
 
 def cdq4(f, x, h=1e-5):
     """Calculate the fourth order centered difference quotient of f at x."""
-    x = np.atleast_1d(x)
-    result = (-f(x + 2*h) + 8*f(x + h) - 8*f(x - h) + f(x - 2*h)) / (12*h)
-    return result if result.size > 1 else result[0]
-
+    x = np.atleast_1d(x).astype(float)
+    return (-f(x + 2*h) + 8*f(x + h) - 8*f(x - h) + f(x - 2*h)) / (12*h)
 
 # Problem 3
 def prob3(x0):

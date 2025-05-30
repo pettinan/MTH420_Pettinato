@@ -26,28 +26,39 @@ def prob1():
 # Problem 2
 def fdq1(f, x, h=1e-5):
     """Calculate the first order forward difference quotient of f at x."""
-    return (f(x + h) - f(x)) / h
-
+    x = np.atleast_1d(x)
+    result = (f(x + h) - f(x)) / h
+    return result if result.size > 1 else result[0]
     
 def fdq2(f, x, h=1e-5):
     """Calculate the second order forward difference quotient of f at x."""
-    return (-f(x + 2*h) + 4*f(x + h) - 3*f(x)) / (2*h)
+    x = np.atleast_1d(x)
+    result = (-f(x + 2*h) + 4*f(x + h) - 3*f(x)) / (2*h)
+    return result if result.size > 1 else result[0]
 
 def bdq1(f, x, h=1e-5):
     """Calculate the first order backward difference quotient of f at x."""
-    return (f(x) - f(x - h)) / h
+    x = np.atleast_1d(x)
+    result = (f(x) - f(x - h)) / h
+    return result if result.size > 1 else result[0]
 
 def bdq2(f, x, h=1e-5):
     """Calculate the second order backward difference quotient of f at x."""
-    return (3*f(x) - 4*f(x - h) + f(x - 2*h)) / (2*h)
+    x = np.atleast_1d(x)
+    result = (3*f(x) - 4*f(x - h) + f(x - 2*h)) / (2*h)
+    return result if result.size > 1 else result[0]
 
 def cdq2(f, x, h=1e-5):
     """Calculate the second order centered difference quotient of f at x."""
-    return (f(x + h) - f(x - h)) / (2*h)
+    x = np.atleast_1d(x)
+    result = (f(x + h) - f(x - h)) / (2*h)
+    return result if result.size > 1 else result[0]
 
 def cdq4(f, x, h=1e-5):
     """Calculate the fourth order centered difference quotient of f at x."""
-    return (-f(x + 2*h) + 8*f(x + h) - 8*f(x - h) + f(x - 2*h)) / (12*h)
+    x = np.atleast_1d(x)
+    result = (-f(x + 2*h) + 8*f(x + h) - 8*f(x - h) + f(x - 2*h)) / (12*h)
+    return result if result.size > 1 else result[0]
 
 
 # Problem 3
@@ -201,4 +212,3 @@ def prob7(N=200):
     For SymPy, assume an absolute error of 1e-18.
     """
     raise NotImplementedError("Problem 7 Incomplete")
-
